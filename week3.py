@@ -186,7 +186,7 @@ ny_postal_code_list = [('PostalCode','Borough','Neighborhood'),
 df = pd.DataFrame(ny_postal_code_list, columns = 
                   ['PostalCode' , 'Borough', 'Neighborhood']) 
 # Get names of indexes for which column Stock has value No
-indexNames = df[ df['Neighborhood'] == 'Not assigned' ].index
+indexNames = df[ df['Borough'] == 'Not assigned' ].index
 # Delete these row indexes from dataFrame
 df.drop(indexNames , inplace=True)
 print(df)
