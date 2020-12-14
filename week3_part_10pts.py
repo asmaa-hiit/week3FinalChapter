@@ -1,6 +1,12 @@
+import pandas as pd
+import numpy as np
+import requests
+
+
 # python 3.x
 import pandas as pd
-ny_postal_code_list = [('PostalCode','Borough','Neighborhood'),
+ny_postal_code_list = [
+
 ('M1A','Not assigned','Not assigned'),
 ('M2A','Not assigned','Not assigned'),
 ('M3A','North York','Parkwoods'),
@@ -181,12 +187,22 @@ ny_postal_code_list = [('PostalCode','Borough','Neighborhood'),
 ('M7Z','Not assigned','Not assigned'),
 ('M8Z','Etobicoke','Mimico NW  The Queensway West  South of Bloor  Kingsway Park South West  Royal York South West'),
 ('M9Z','Not assigned','Not assigned')]
-  
+
+
 #Create a DataFrame object
-df = pd.DataFrame(ny_postal_code_list, columns = 
-                  ['PostalCode' , 'Borough', 'Neighborhood']) 
-# Get names of indexes for which column Stock has value No
-indexNames = df[ df['Neighborhood'] == 'Not assigned' ].index
+df = pd.DataFrame(ny_postal_code_list, columns = ['PostalCode' , 'Borough', 'Neighborhood']) 
+# Get names of indexes for which column Borough has value Not assigned
+indexNames = df[ df['Borough'] == 'Not assigned' ].index
 # Delete these row indexes from dataFrame
 df.drop(indexNames , inplace=True)
 print(df)
+
+
+df.reset_index(inplace = True)
+df.head()
+df.groupby(['PostalCode']).first()
+len(df['PostalCode'].unique())
+df[df['Borough'] == 'Not assigned']
+df.shape
+print(df)
+
